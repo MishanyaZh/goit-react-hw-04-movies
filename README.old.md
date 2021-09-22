@@ -89,3 +89,11 @@ liba
    basiclightbox
 
 7. axios https://www.npmjs.com/package/axios npm i axios
+
+Ключ API (v3 auth) 5d1f3e81f4c80e6e958c33832d40a637
+
+Пример API-запроса
+https://api.themoviedb.org/3/movie/550?api_key=5d1f3e81f4c80e6e958c33832d40a637
+
+Ключ доступа к API (v4 auth)
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZDFmM2U4MWY0YzgwZTZlOTU4YzMzODMyZDQwYTYzNyIsInN1YiI6IjYxNGIzODhlMmRmZmQ4MDA0NWQwNGNhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.w_qjv81Dt7RcT0gYDJkLCrnRwmYGiJhTk9B25kAhkv0

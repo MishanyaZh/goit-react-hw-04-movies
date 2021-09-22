@@ -1,0 +1,19 @@
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  color: black;
+}
+
+.activeLink {
+  /* composes: link; */
+  color: brown;
+}
+
+.nav {
+  background: darkkhaki;
+  border: 1px solid brown;
+  border-radius: 5px;
+}
