@@ -1,14 +1,12 @@
-import { Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-
-import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
+import { NavLink, Link, useRouteMatch } from 'react-router-dom';
 
 import { fetchMovieQuery } from '../../services/api-themoviedb';
 
 import s from '../MoviesPage/MoviesPage.module.css';
 
 export default function MoviesPage() {
+  const { url } = useRouteMatch();
   const [query, setQuery] = useState('');
   const [queryFilms, setQueryFilms] = useState([]);
 
@@ -33,7 +31,7 @@ export default function MoviesPage() {
 
   return (
     <div>
-      <h1>MoviesPage content</h1>
+      <h1>MoviesPage</h1>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -58,17 +56,13 @@ export default function MoviesPage() {
       <ul className={s.list}>
         {queryFilms.map(film => (
           <li key={film.id}>
-            <NavLink to="/movies/:movieId">
+            <Link to={`${url}/${film.id}`}>
               {film.name}
               {film.title}
-            </NavLink>
+            </Link>
           </li>
         ))}
       </ul>
-
-      <Route path="/movies/:movieId">
-        <MovieDetailsPage />
-      </Route>
     </div>
   );
 }

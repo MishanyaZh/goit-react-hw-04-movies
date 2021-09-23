@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link, NavLink, useRouteMatch } from 'react-router-dom';
 import { fetchMovieTrending } from '../../services/api-themoviedb';
 
-import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
+// import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
 
 import s from '../HomePage/HomePage.module.css';
 
 export default function HomePage() {
+  const { url } = useRouteMatch();
+  // console.log(url);
   const [tredingFilms, setTredingFilms] = useState([]);
 
   useEffect(() => {
@@ -24,21 +25,17 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>HomePage content</h1>
+      <h1>HomePage</h1>
       <ul className={s.list}>
         {tredingFilms.map(film => (
           <li key={film.id}>
-            <NavLink to="/movies/:movieId">
+            <Link to={`${url}movies/${film.id}`}>
               {film.name}
               {film.title}
-            </NavLink>
+            </Link>
           </li>
         ))}
       </ul>
-
-      <Route path="/movies/:movieId">
-        <MovieDetailsPage />
-      </Route>
     </div>
   );
 }

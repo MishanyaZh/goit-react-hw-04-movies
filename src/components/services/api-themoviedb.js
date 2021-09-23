@@ -31,4 +31,14 @@ export const fetchMovieById = async movieId => {
   const idMovie = await axios.get(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
   );
+  return idMovie.data;
+  // console.log(idMovie.data);
+};
+
+export const fetchMovieByIdCast = async movieId => {
+  const idMovieCast = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
+  );
+  return idMovieCast;
+  // console.log(idMovieCast);
 };

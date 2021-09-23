@@ -1,0 +1,13 @@
+.img {
+  width: 150px;
+  height: 250px;
+}
+
+.list {
+  text-align: left;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
