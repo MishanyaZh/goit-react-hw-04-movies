@@ -10,10 +10,6 @@ const Navigation = () => (
     <NavLink to="/movies" className={s.link} activeClassName={s.activeLink}>
       Movies
     </NavLink>
-
-    {/* <NavLink to ="/" > HomePage </NavLink>
-        <NavLink to ="/" > HomePage </NavLink>
-        <NavLink to ="/" > HomePage </NavLink> */}
   </nav>
 );
 
