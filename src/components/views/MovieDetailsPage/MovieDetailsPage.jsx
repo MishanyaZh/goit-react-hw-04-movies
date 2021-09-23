@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useParams, Switch, Route } from 'react-router-dom';
+import { useParams, Route } from 'react-router-dom';
 
 import { fetchMovieById } from '../../services/api-themoviedb';
-import Cast from '../Cast/Cast';
+import Cast from '../Cast/Cast.jsx';
 import s from '../MovieDetailsPage/MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
@@ -12,20 +12,20 @@ export default function MovieDetailsPage() {
 
   useEffect(() => {
     async function getFilmsById() {
-      if (!film) {
+      if (!movieId) {
         return;
       }
       try {
         const filmById = await fetchMovieById(movieId);
 
         setFilm(filmById);
-        //   console.log(filmById);
       } catch (error) {
         console.log(error);
       }
     }
     getFilmsById();
   }, [movieId]);
+
   // const { title, name, release_date, poster_path, overview, ganre } = film;
   return (
     <div>
@@ -52,18 +52,11 @@ export default function MovieDetailsPage() {
               ))}
             </ul>
           )}
-
-          {movieId && (
-            <Route path="/movies/:movieId/cast" exact>
-              <Cast />
-            </Route>
-          )}
         </div>
       )}
-
-      {/* {film && <Route path="/movies/:movieId/cast" exact>
-                <Cast/>
-            </Route>} */}
+      <Route path="/movies/:movieId/cast" exact>
+        <Cast />
+      </Route>
     </div>
   );
 }

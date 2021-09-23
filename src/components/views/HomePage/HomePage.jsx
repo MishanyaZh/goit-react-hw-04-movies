@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Switch, Route, Link, NavLink, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { fetchMovieTrending } from '../../services/api-themoviedb';
 
 // import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
