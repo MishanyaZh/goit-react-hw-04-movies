@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useParams, Route } from 'react-router-dom';
+import { useParams, Route, Link } from 'react-router-dom';
 
 import { fetchMovieById } from '../../services/api-themoviedb';
 import Cast from '../Cast/Cast.jsx';
+import Reviews from '../Reviews/Reviews';
+
 import s from '../MovieDetailsPage/MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
@@ -17,7 +19,7 @@ export default function MovieDetailsPage() {
       }
       try {
         const filmById = await fetchMovieById(movieId);
-
+        // console.log(filmById);
         setFilm(filmById);
       } catch (error) {
         console.log(error);
@@ -28,7 +30,7 @@ export default function MovieDetailsPage() {
 
   // const { title, name, release_date, poster_path, overview, ganre } = film;
   return (
-    <div>
+    <div className={s.container}>
       {film && (
         <div className={s.flex}>
           <h1>
@@ -38,9 +40,8 @@ export default function MovieDetailsPage() {
           <p>{film.release_date}</p>
           <img
             className={s.img}
-            src={film.backdrop_path}
+            src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
             alt={film.name}
-            height="100"
           />
           <h2> Overview </h2>
           <p>{film.overview}</p>
@@ -52,11 +53,27 @@ export default function MovieDetailsPage() {
               ))}
             </ul>
           )}
+
+          <Link to="/movies/:movieId/cast">
+            <p>Cast</p>
+          </Link>
+
+          <Link to="/movies/:movieId/reviews">
+            <p>Reviews</p>
+          </Link>
         </div>
       )}
-      <Route path="/movies/:movieId/cast" exact>
-        <Cast />
-      </Route>
+      {film && (
+        <Route path="/movies/:movieId/cast" exact>
+          <Cast Id={film.id} />
+        </Route>
+      )}
+
+      {film && (
+        <Route path="/movies/:movieId/reviews" exact>
+          <Reviews Id={film.id} />
+        </Route>
+      )}
     </div>
   );
 }

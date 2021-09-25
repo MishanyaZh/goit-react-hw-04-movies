@@ -39,3 +39,11 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+h1,
+h2,
+h3,
+ul,
+li {
+  margin: 0;
+}

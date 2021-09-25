@@ -8,7 +8,6 @@ import s from '../HomePage/HomePage.module.css';
 
 export default function HomePage() {
   const { url } = useRouteMatch();
-  // console.log(url);
   const [tredingFilms, setTredingFilms] = useState([]);
 
   useEffect(() => {

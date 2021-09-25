@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 
 import { fetchMovieByIdCast } from '../../services/api-themoviedb';
 
-export default function Cast({ Id }) {
-  // console.log(Id);
-  const [filmCast, setFilmCast] = useState([]);
+export default function Reviews({ Id }) {
+  console.log(Id);
+  const [filmReviews, setFilmReviews] = useState([]);
 
   useEffect(() => {
     async function getFilmsById() {
@@ -13,8 +13,8 @@ export default function Cast({ Id }) {
       }
       try {
         const filmByIdCast = await fetchMovieByIdCast(Id);
-        setFilmCast(filmByIdCast.data.cast);
-        console.log(filmByIdCast.data.cast);
+        setFilmReviews(filmByIdCast.data);
+        console.log(filmByIdCast.data);
       } catch (error) {
         console.log(error);
       }
@@ -24,9 +24,14 @@ export default function Cast({ Id }) {
 
   return (
     <div>
-      <ul>
-        {filmCast && filmCast.map(cast => <li key={cast.id}>{cast.name}</li>)}
-      </ul>
+      <p>hello reviews</p>
+      {/* <ul>
+        {filmReviews &&
+        filmReviews.map(cast => (
+          <li key={cast.id}>{cast.name}</li>
+        ))
+      }
+      </ul> */}
     </div>
   );
 }
