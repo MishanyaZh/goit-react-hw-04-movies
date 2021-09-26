@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { fetchMovieByIdCast } from '../../services/api-themoviedb';
 
 export default function Cast({ Id }) {
-  // console.log(Id);
   const [filmCast, setFilmCast] = useState([]);
 
   useEffect(() => {

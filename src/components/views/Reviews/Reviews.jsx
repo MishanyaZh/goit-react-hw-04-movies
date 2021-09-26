@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { fetchMovieByIdCast } from '../../services/api-themoviedb';
+import { fetchMovieByIdReviews } from '../../services/api-themoviedb';
 
 export default function Reviews({ Id }) {
   console.log(Id);
@@ -12,9 +12,9 @@ export default function Reviews({ Id }) {
         return;
       }
       try {
-        const filmByIdCast = await fetchMovieByIdCast(Id);
-        setFilmReviews(filmByIdCast.data);
-        console.log(filmByIdCast.data);
+        const filmByIdReviews = await fetchMovieByIdReviews(Id);
+        setFilmReviews(filmByIdReviews.data.results);
+        console.log(filmByIdReviews.data.results);
       } catch (error) {
         console.log(error);
       }
@@ -24,14 +24,18 @@ export default function Reviews({ Id }) {
 
   return (
     <div>
-      <p>hello reviews</p>
-      {/* <ul>
-        {filmReviews &&
-        filmReviews.map(cast => (
-          <li key={cast.id}>{cast.name}</li>
-        ))
-      }
-      </ul> */}
+      <ul>
+        {filmReviews.length ? (
+          filmReviews.map(results => (
+            <li key={results.id}>
+              <p>{results.author}</p>
+              <p>{results.content}</p>
+            </li>
+          ))
+        ) : (
+          <span>not results</span>
+        )}
+      </ul>
     </div>
   );
 }
