@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { fetchMovieTrending } from '../../services/api-themoviedb';
 
-// import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
+import { fetchMovieTrending } from '../../services/api-themoviedb';
 
 import s from '../HomePage/HomePage.module.css';
 

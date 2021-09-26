@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { useParams, Route, Link } from 'react-router-dom';
 
 import { fetchMovieById } from '../../services/api-themoviedb';
+
 import Cast from '../Cast/Cast.jsx';
 import Reviews from '../Reviews/Reviews';
 
 import s from '../MovieDetailsPage/MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
-  const { movieId } = useParams(null);
+  const { movieId } = useParams();
 
   const [film, setFilm] = useState([]);
 
