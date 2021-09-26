@@ -19,12 +19,16 @@ export default function Cast({ Id }) {
       }
     }
     getFilmsById();
-  }, []);
+  }, [Id]);
 
   return (
     <div>
       <ul>
-        {filmCast && filmCast.map(cast => <li key={cast.id}>{cast.name}</li>)}
+        {filmCast.length ? (
+          filmCast.map(cast => <li key={cast.id}>{cast.name}</li>)
+        ) : (
+          <span>not results</span>
+        )}
       </ul>
     </div>
   );

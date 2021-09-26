@@ -8,7 +8,7 @@ import Reviews from '../Reviews/Reviews';
 import s from '../MovieDetailsPage/MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
-  const { movieId } = useParams();
+  const { movieId } = useParams(null);
 
   const [film, setFilm] = useState([]);
 
@@ -31,7 +31,7 @@ export default function MovieDetailsPage() {
   // const { title, name, release_date, poster_path, overview, ganre } = film;
   return (
     <div className={s.container}>
-      {film && (
+      {movieId ? (
         <div className={s.flex}>
           <h1>
             {film.title}
@@ -62,6 +62,8 @@ export default function MovieDetailsPage() {
             <p>Reviews</p>
           </Link>
         </div>
+      ) : (
+        <span>not results</span>
       )}
       {film && (
         <Route path="/movies/:movieId/cast" exact>

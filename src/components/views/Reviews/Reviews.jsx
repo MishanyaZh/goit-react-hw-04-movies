@@ -20,7 +20,7 @@ export default function Reviews({ Id }) {
       }
     }
     getFilmsById();
-  }, []);
+  }, [Id]);
 
   return (
     <div>
