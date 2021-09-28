@@ -2,30 +2,43 @@ import { useState, useEffect } from 'react';
 
 import { fetchMovieByIdCast } from '../../services/api-themoviedb';
 
-export default function Cast({ Id }) {
+import s from './Cast.module.css';
+
+export default function Cast({ id }) {
   const [filmCast, setFilmCast] = useState([]);
+  // console.log(id);
 
   useEffect(() => {
     async function getFilmsById() {
-      if (!Id) {
-        return;
+      if (!id) {
+        return console.log('not have id');
       }
       try {
-        const filmByIdCast = await fetchMovieByIdCast(Id);
-        setFilmCast(filmByIdCast.data.cast);
-        console.log(filmByIdCast.data.cast);
+        const filmByIdCast = await fetchMovieByIdCast(id);
+        setFilmCast(filmByIdCast);
+        // console.log(filmByIdCast);
       } catch (error) {
         console.log(error);
       }
     }
     getFilmsById();
-  }, [Id]);
+  }, [id]);
 
   return (
     <div>
-      <ul>
+      <ul className={s.list}>
         {filmCast.length ? (
-          filmCast.map(cast => <li key={cast.id}>{cast.name}</li>)
+          filmCast.map(cast => (
+            <li className={s.items} key={cast.id}>
+              <img
+                className={s.img}
+                src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                alt={cast.name}
+              />
+
+              <span className={s.name}>{cast.name}</span>
+            </li>
+          ))
         ) : (
           <span>not results</span>
         )}

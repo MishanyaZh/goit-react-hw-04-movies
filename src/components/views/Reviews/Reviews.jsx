@@ -2,34 +2,36 @@ import { useState, useEffect } from 'react';
 
 import { fetchMovieByIdReviews } from '../../services/api-themoviedb';
 
-export default function Reviews({ Id }) {
-  console.log(Id);
+import s from './Reviews.module.css';
+
+export default function Reviews({ id }) {
+  // console.log(id);
   const [filmReviews, setFilmReviews] = useState([]);
 
   useEffect(() => {
     async function getFilmsById() {
-      if (!Id) {
+      if (!id) {
         return;
       }
       try {
-        const filmByIdReviews = await fetchMovieByIdReviews(Id);
-        setFilmReviews(filmByIdReviews.data.results);
-        console.log(filmByIdReviews.data.results);
+        const filmByIdReviews = await fetchMovieByIdReviews(id);
+        setFilmReviews(filmByIdReviews);
+        // console.log(filmByIdReviews);
       } catch (error) {
         console.log(error);
       }
     }
     getFilmsById();
-  }, [Id]);
+  }, [id]);
 
   return (
     <div>
       <ul>
         {filmReviews.length ? (
           filmReviews.map(results => (
-            <li key={results.id}>
-              <p>{results.author}</p>
-              <p>{results.content}</p>
+            <li className={s.items} key={results.id}>
+              <p className={s.author}>{results.author}</p>
+              <p className={s.content}>{results.content}</p>
             </li>
           ))
         ) : (

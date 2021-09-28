@@ -14,39 +14,47 @@ import axios from 'axios';
 // });
 
 export const fetchMovieTrending = async () => {
-  const trendMovie = await axios.get(
-    `https://api.themoviedb.org/3/trending/all/day?api_key=5d1f3e81f4c80e6e958c33832d40a637`,
+  const {
+    data: { results },
+  } = await axios.get(
+    `https://api.themoviedb.org/3/trending/movie/day?api_key=5d1f3e81f4c80e6e958c33832d40a637`,
   );
-  return trendMovie.data.results;
+  return results;
 };
 
 export const fetchMovieQuery = async query => {
-  const queryMovie = await axios.get(
+  const {
+    data: { results },
+  } = await axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US&query=${query}&page=1&include_adult=false`,
   );
-  return queryMovie.data.results;
+  return results;
 };
 
 export const fetchMovieById = async movieId => {
-  const idMovie = await axios.get(
+  const { data } = await axios.get(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
   );
-  return idMovie.data;
+  return data;
   // console.log(idMovie.data);
 };
 
 export const fetchMovieByIdCast = async movieId => {
-  const idMovieCast = await axios.get(
+  const {
+    data: { cast },
+  } = await axios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
   );
-  return idMovieCast;
+  return cast;
   // console.log(idMovieCast);
 };
 
 export const fetchMovieByIdReviews = async movieId => {
-  const idMovieReviews = await axios.get(
+  const {
+    data: { results },
+  } = await axios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
   );
-  return idMovieReviews;
+  return results;
   // console.log(idMovieReviews);
 };

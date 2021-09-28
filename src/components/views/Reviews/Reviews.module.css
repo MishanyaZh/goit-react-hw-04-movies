@@ -1,0 +1,16 @@
+.items {
+  list-style: none;
+  background: burlywood;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 2px;
+}
+
+.author {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.content {
+  margin-bottom: 10px;
+}

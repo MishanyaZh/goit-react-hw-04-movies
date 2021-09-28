@@ -6,11 +6,11 @@ import MoviesPage from '../views/MoviesPage/MoviesPage.jsx';
 import NotFoundPage from '../views/NotFoundPage.jsx';
 
 import MovieDetailsPage from '../views/MovieDetailsPage/MovieDetailsPage.jsx';
-import '../App/App.css';
+import s from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className={s.app}>
       <Appbar />
 
       <Switch>

@@ -14,6 +14,7 @@ export default function HomePage() {
       try {
         const films = await fetchMovieTrending();
         setTredingFilms(films);
+        console.log(films);
       } catch (error) {
         console.log(error);
       }
@@ -23,13 +24,19 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>HomePage</h1>
       <ul className={s.list}>
         {tredingFilms.map(film => (
-          <li key={film.id}>
-            <Link to={`${url}movies/${film.id}`}>
-              {film.name}
-              {film.title}
+          <li className={s.item} key={film.id}>
+            <Link className={s.link} to={`${url}movies/${film.id}`}>
+              <img
+                className={s.img}
+                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                alt={film.name}
+              />
+              <h2>
+                {film.name}
+                {film.title}
+              </h2>
             </Link>
           </li>
         ))}

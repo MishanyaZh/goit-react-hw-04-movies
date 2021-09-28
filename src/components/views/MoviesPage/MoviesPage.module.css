@@ -1,3 +1,35 @@
+.container {
+}
+
+.form {
+  margin: 10px;
+}
+
+.button {
+  cursor: pointer;
+}
+
 .list {
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.item {
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  background: darkgray;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.img {
+  display: block;
+  height: 100px;
+  margin: 10px;
 }
