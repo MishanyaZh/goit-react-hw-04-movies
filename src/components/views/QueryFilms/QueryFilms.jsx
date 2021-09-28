@@ -1,20 +1,38 @@
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import s from '../MoviesPage/MoviesPage.module.css';
+import s from './/QueryFilms.module.css';
 
 export default function QueryFilms({ queryFilms }) {
+  const location = useLocation();
   const { url } = useRouteMatch();
-  console.log(queryFilms);
   return (
     <ul className={s.list}>
       {queryFilms.map(film => (
-        <li key={film.id}>
-          <Link to={`${url}/${film.id}`}>
-            {film.name}
-            {film.title}
+        <li className={s.item} key={film.id}>
+          <Link
+            to={{
+              pathname: `${url}/${film.id}`,
+              state: { from: location },
+            }}
+            className={s.link}
+          >
+            <img
+              className={s.img}
+              src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+              alt={film.name}
+            />
+            <h2>
+              {film.name}
+              {film.title}{' '}
+            </h2>
           </Link>
         </li>
       ))}
     </ul>
   );
 }
+
+QueryFilms.propTypes = {
+  queryFilms: PropTypes.object,
+};

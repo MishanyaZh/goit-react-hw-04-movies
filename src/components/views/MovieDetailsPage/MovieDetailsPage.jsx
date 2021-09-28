@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useParams, Route, Link } from 'react-router-dom';
+import {
+  useParams,
+  Route,
+  Link,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
 
 import { fetchMovieById } from '../../services/api-themoviedb';
 
 import Cast from '../Cast/Cast.jsx';
 import Reviews from '../Reviews/Reviews';
-
 import s from '../MovieDetailsPage/MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
+  const location = useLocation();
+  const history = useHistory();
   const { movieId } = useParams();
-  console.log(movieId);
   const [film, setFilm] = useState([]);
 
   useEffect(() => {
@@ -18,7 +24,6 @@ export default function MovieDetailsPage() {
       try {
         const filmById = await fetchMovieById(movieId);
         setFilm(filmById);
-        console.log(filmById);
       } catch (error) {
         console.log(error);
       }
@@ -26,12 +31,14 @@ export default function MovieDetailsPage() {
     getFilmsById();
   }, [movieId]);
 
+  const onGoBack = () => {
+    history.push(location.state.from);
+  };
+
   return (
     <div className={s.container}>
-      <button className={s.button}>
-        <Link to="/">
-          <p>Go Back</p>
-        </Link>
+      <button onClick={onGoBack} type="button" className={s.button}>
+        <p>Go Back</p>
       </button>
       <hr />
       {movieId ? (

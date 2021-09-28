@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-
+import PropTypes from 'prop-types';
 import { fetchMovieByIdCast } from '../../services/api-themoviedb';
 
 import s from './Cast.module.css';
 
 export default function Cast({ id }) {
   const [filmCast, setFilmCast] = useState([]);
-  // console.log(id);
 
   useEffect(() => {
     async function getFilmsById() {
@@ -16,7 +15,6 @@ export default function Cast({ id }) {
       try {
         const filmByIdCast = await fetchMovieByIdCast(id);
         setFilmCast(filmByIdCast);
-        // console.log(filmByIdCast);
       } catch (error) {
         console.log(error);
       }
@@ -46,3 +44,7 @@ export default function Cast({ id }) {
     </div>
   );
 }
+
+Cast.propTypes = {
+  id: PropTypes.number,
+};

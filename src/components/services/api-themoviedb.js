@@ -36,7 +36,6 @@ export const fetchMovieById = async movieId => {
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
   );
   return data;
-  // console.log(idMovie.data);
 };
 
 export const fetchMovieByIdCast = async movieId => {
@@ -46,7 +45,6 @@ export const fetchMovieByIdCast = async movieId => {
     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
   );
   return cast;
-  // console.log(idMovieCast);
 };
 
 export const fetchMovieByIdReviews = async movieId => {
@@ -56,5 +54,4 @@ export const fetchMovieByIdReviews = async movieId => {
     `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=5d1f3e81f4c80e6e958c33832d40a637&language=en-US`,
   );
   return results;
-  // console.log(idMovieReviews);
 };

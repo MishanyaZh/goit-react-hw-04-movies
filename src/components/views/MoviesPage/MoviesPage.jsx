@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { fetchMovieQuery } from '../../services/api-themoviedb';
-
-// import QueryFilms from '../QueryFilms/QueryFilms';
-
+import QueryFilms from '../QueryFilms/QueryFilms';
 import s from './MoviesPage.module.css';
 
 export default function MoviesPage() {
-  const { url } = useRouteMatch();
+  const location = useLocation();
+  const history = useHistory();
+
   const [query, setQuery] = useState('');
   const [queryFilms, setQueryFilms] = useState([]);
 
   const formSubmitQuery = query => {
     setQuery(query);
+    history.push({
+      ...location,
+      search: `query=${query}`,
+    });
   };
 
   useEffect(() => {
@@ -55,29 +59,7 @@ export default function MoviesPage() {
         </button>
       </form>
 
-      <ul className={s.list}>
-        {queryFilms.map(film => (
-          <li className={s.item} key={film.id}>
-            <Link className={s.link} to={`${url}/${film.id}`}>
-              <img
-                className={s.img}
-                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                alt={film.name}
-              />
-              <h2>
-                {film.name}
-                {film.title}
-              </h2>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      {/* {queryFilms && (
-        <Route path={`${url}?query=${query}`} exact>
-          <QueryFilms queryFilms={queryFilms} />
-        </Route>
-       )}  */}
+      {queryFilms && <QueryFilms queryFilms={queryFilms} />}
     </div>
   );
 }
