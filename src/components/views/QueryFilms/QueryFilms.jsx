@@ -34,5 +34,5 @@ export default function QueryFilms({ queryFilms }) {
 }
 
 QueryFilms.propTypes = {
-  queryFilms: PropTypes.object,
+  queryFilms: PropTypes.array,
 };

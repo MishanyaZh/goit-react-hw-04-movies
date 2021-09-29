@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+// import { useLocation } from 'react-router';
 import PropTypes from 'prop-types';
 import { fetchMovieByIdCast } from '../../services/api-themoviedb';
 
@@ -6,7 +7,8 @@ import s from './Cast.module.css';
 
 export default function Cast({ id }) {
   const [filmCast, setFilmCast] = useState([]);
-
+  // const location =useLocation();
+  // console.log(location);
   useEffect(() => {
     async function getFilmsById() {
       if (!id) {
@@ -23,7 +25,7 @@ export default function Cast({ id }) {
   }, [id]);
 
   return (
-    <div>
+    <div className={s.infoBox}>
       <ul className={s.list}>
         {filmCast.length ? (
           filmCast.map(cast => (
@@ -33,7 +35,6 @@ export default function Cast({ id }) {
                 src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                 alt={cast.name}
               />
-
               <span className={s.name}>{cast.name}</span>
             </li>
           ))

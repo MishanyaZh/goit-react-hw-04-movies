@@ -6,6 +6,7 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
 import { fetchMovieById } from '../../services/api-themoviedb';
 
@@ -18,14 +19,18 @@ export default function MovieDetailsPage() {
   const history = useHistory();
   const { movieId } = useParams();
   const [film, setFilm] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     async function getFilmsById() {
       try {
         const filmById = await fetchMovieById(movieId);
+        setLoader(true);
         setFilm(filmById);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoader(false);
       }
     }
     getFilmsById();
@@ -37,19 +42,30 @@ export default function MovieDetailsPage() {
 
   return (
     <div className={s.container}>
-      <button onClick={onGoBack} type="button" className={s.button}>
+      {/* <hr /> */}
+      <button onClick={onGoBack} type="button" className={s.buttonLink}>
         <p>Go Back</p>
       </button>
       <hr />
-      {movieId ? (
+
+      {loader === false && (
+        <Loader
+          type="ThreeDots"
+          color="#00BFFF"
+          height={80}
+          width={80}
+          timeout={1000}
+        />
+      )}
+
+      {movieId || film ? (
         <div className={s.flex}>
           <img
             className={s.img}
             src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
             alt={film.name}
           />
-
-          <div>
+          <div className={s.infoBox}>
             <h1>
               {film.name}
               {film.title}
@@ -74,12 +90,22 @@ export default function MovieDetailsPage() {
       )}
 
       <hr />
-      <Link to="/movies/:movieId/cast">
-        <p className={s.link}>Cast</p>
+      <Link
+        to={{
+          pathname: `/movies/${movieId}/cast`,
+          state: { from: location },
+        }}
+      >
+        <button className={s.buttonLink}>Cast</button>
       </Link>
 
-      <Link to="/movies/:movieId/reviews">
-        <p className={s.link}>Reviews</p>
+      <Link
+        to={{
+          pathname: `/movies/${movieId}/reviews`,
+          state: { from: location },
+        }}
+      >
+        <button className={s.buttonLink}>Reviews</button>
       </Link>
       <hr />
 

@@ -1,10 +1,15 @@
 .link {
   display: inline-block;
   text-decoration: none;
+  margin-left: 5px;
   padding: 10px;
   font-weight: 500;
   font-size: 16px;
   color: black;
+}
+
+.link:hover {
+  transform: scale(1.1);
 }
 
 .activeLink {
@@ -13,6 +18,7 @@
 }
 
 .nav {
+  /* max-width: 1000px; */
   display: block;
   background: darkkhaki;
   border: 1px solid brown;

@@ -25,7 +25,7 @@ export default function Reviews({ id }) {
   }, [id]);
 
   return (
-    <div>
+    <div className={s.infoBox}>
       <ul>
         {filmReviews.length ? (
           filmReviews.map(results => (
