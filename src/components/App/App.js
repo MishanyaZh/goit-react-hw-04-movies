@@ -1,10 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Loader from 'react-loader-spinner';
-
-import s from './App.module.css';
-
 import Appbar from '../AppBar/AppBar.js';
+import s from './App.module.css';
 
 const HomePage = lazy(() =>
   import('../views/HomePage/HomePage.jsx' /*webpackChunkName: "home-page"*/),
@@ -39,21 +37,10 @@ function App() {
         }
       >
         <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-
-          <Route path="/movies/:movieId">
-            <MovieDetailsPage />
-          </Route>
-
-          <Route path="/movies">
-            <MoviesPage />
-          </Route>
-
-          <Route>
-            <NotFoundPage />
-          </Route>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/movies/:movieId" component={MovieDetailsPage} />
+          <Route path="/movies" component={MoviesPage} />
+          <Route component={NotFoundPage} />
         </Switch>
       </Suspense>
     </div>

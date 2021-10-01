@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import {
+  useHistory,
+  useLocation,
+  Route,
+  useRouteMatch,
+} from 'react-router-dom';
 
 import { fetchMovieQuery } from '../../services/api-themoviedb';
 import QueryFilms from '../QueryFilms/QueryFilms';
@@ -8,12 +13,14 @@ import s from './MoviesPage.module.css';
 export default function MoviesPage() {
   const location = useLocation();
   const history = useHistory();
+  const { url } = useRouteMatch();
 
   const [query, setQuery] = useState('');
   const [queryFilms, setQueryFilms] = useState([]);
 
   const formSubmitQuery = query => {
     setQuery(query);
+
     history.push({
       ...location,
       search: `query=${query}`,
@@ -25,6 +32,7 @@ export default function MoviesPage() {
       if (!query) {
         return;
       }
+
       try {
         const films = await fetchMovieQuery(query);
         setQueryFilms(films);
@@ -59,7 +67,12 @@ export default function MoviesPage() {
         </button>
       </form>
 
-      {queryFilms && <QueryFilms queryFilms={queryFilms} />}
+      <QueryFilms queryFilms={queryFilms} />
+
+      {/* {queryFilms &&} */}
+      {/* <Route path={`${url}?query=${query}`}>
+        <QueryFilms queryFilms={queryFilms} />
+      </Route> */}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import s from './/QueryFilms.module.css';
 export default function QueryFilms({ queryFilms }) {
   const location = useLocation();
   const { url } = useRouteMatch();
+
   return (
     <ul className={s.list}>
       {queryFilms.map(film => (
