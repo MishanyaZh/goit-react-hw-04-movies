@@ -5,26 +5,28 @@ import { fetchMovieQuery } from '../../services/api-themoviedb';
 
 import s from './QueryFilms.module.css';
 
-export default function QueryFilms({ query }) {
+export default function QueryFilms() {
   const location = useLocation();
   const { url } = useRouteMatch();
-
+  const [queryString, setQueryString] = useState('');
   const [queryFilms, setQueryFilms] = useState([]);
 
   useEffect(() => {
     async function getFilmsQuery() {
-      if (!query) {
+      setQueryString(location.search);
+      // console.log(queryString);
+      if (!queryString) {
         return;
       }
       try {
-        const films = await fetchMovieQuery(query);
+        const films = await fetchMovieQuery(queryString);
         setQueryFilms(films);
       } catch (error) {
         console.log(error);
       }
     }
     getFilmsQuery();
-  }, [query]);
+  }, [location.search, queryString]);
 
   return (
     <ul className={s.list}>
@@ -44,7 +46,7 @@ export default function QueryFilms({ query }) {
             />
             <h2>
               {film.name}
-              {film.title}{' '}
+              {film.title}
             </h2>
           </Link>
         </li>

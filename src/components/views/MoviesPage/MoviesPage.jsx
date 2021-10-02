@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+// import { useState} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import QueryFilms from '../QueryFilms/QueryFilms';
@@ -8,17 +8,17 @@ export default function MoviesPage() {
   const location = useLocation();
   const history = useHistory();
 
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
 
   const formSubmitQuery = query => {
     historyPush(query);
-    setQuery(query);
+    // setQuery(query);
   };
 
   const historyPush = query => {
     history.push({
       ...location,
-      search: `query=${query}`,
+      search: `${query}`,
     });
   };
 
@@ -46,7 +46,9 @@ export default function MoviesPage() {
         </button>
       </form>
 
-      <QueryFilms query={query} />
+      <QueryFilms
+      // query={query}
+      />
     </div>
   );
 }
