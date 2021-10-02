@@ -19,18 +19,18 @@ export default function MovieDetailsPage() {
   const history = useHistory();
   const { movieId } = useParams();
   const [film, setFilm] = useState([]);
-  const [loader, setLoader] = useState(false);
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
     async function getFilmsById() {
       try {
+        setStatus('pending');
         const filmById = await fetchMovieById(movieId);
-        setLoader(true);
+
         setFilm(filmById);
+        setStatus('result');
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoader(false);
       }
     }
     getFilmsById();
@@ -42,27 +42,33 @@ export default function MovieDetailsPage() {
 
   return (
     <div className={s.container}>
-      {/* <hr /> */}
       <button onClick={onGoBack} type="button" className={s.buttonLink}>
         <p>Go Back</p>
       </button>
       <hr />
 
-      {loader === false && (
-        <Loader
-          type="ThreeDots"
-          color="#00BFFF"
-          height={80}
-          width={80}
-          timeout={1000}
-        />
+      {status === 'pending' && (
+        <span>
+          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+        </span>
       )}
 
-      {movieId || film ? (
+      {status === 'result' && (
         <div className={s.flex}>
           <img
             className={s.img}
-            src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+            src={
+              film.poster_path ? (
+                `https://image.tmdb.org/t/p/w500${film.poster_path}`
+              ) : (
+                <Loader
+                  type="ThreeDots"
+                  color="#00BFFF"
+                  height={80}
+                  width={80}
+                />
+              )
+            }
             alt={film.name}
           />
           <div className={s.infoBox}>
@@ -85,8 +91,6 @@ export default function MovieDetailsPage() {
             )}
           </div>
         </div>
-      ) : (
-        <span>not results</span>
       )}
 
       <hr />

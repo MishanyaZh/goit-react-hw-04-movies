@@ -1,11 +1,30 @@
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { fetchMovieQuery } from '../../services/api-themoviedb';
 
-import s from './/QueryFilms.module.css';
+import s from './QueryFilms.module.css';
 
-export default function QueryFilms({ queryFilms }) {
+export default function QueryFilms({ query }) {
   const location = useLocation();
   const { url } = useRouteMatch();
+
+  const [queryFilms, setQueryFilms] = useState([]);
+
+  useEffect(() => {
+    async function getFilmsQuery() {
+      if (!query) {
+        return;
+      }
+      try {
+        const films = await fetchMovieQuery(query);
+        setQueryFilms(films);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getFilmsQuery();
+  }, [query]);
 
   return (
     <ul className={s.list}>

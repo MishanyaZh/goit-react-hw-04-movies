@@ -1,47 +1,26 @@
 import { useState, useEffect } from 'react';
-import {
-  useHistory,
-  useLocation,
-  Route,
-  useRouteMatch,
-} from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
-import { fetchMovieQuery } from '../../services/api-themoviedb';
 import QueryFilms from '../QueryFilms/QueryFilms';
 import s from './MoviesPage.module.css';
 
 export default function MoviesPage() {
   const location = useLocation();
   const history = useHistory();
-  const { url } = useRouteMatch();
 
   const [query, setQuery] = useState('');
-  const [queryFilms, setQueryFilms] = useState([]);
 
   const formSubmitQuery = query => {
+    historyPush(query);
     setQuery(query);
+  };
 
+  const historyPush = query => {
     history.push({
       ...location,
       search: `query=${query}`,
     });
   };
-
-  useEffect(() => {
-    async function getFilmsQuery() {
-      if (!query) {
-        return;
-      }
-
-      try {
-        const films = await fetchMovieQuery(query);
-        setQueryFilms(films);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getFilmsQuery();
-  }, [query]);
 
   return (
     <div className={s.container}>
@@ -67,12 +46,7 @@ export default function MoviesPage() {
         </button>
       </form>
 
-      <QueryFilms queryFilms={queryFilms} />
-
-      {/* {queryFilms &&} */}
-      {/* <Route path={`${url}?query=${query}`}>
-        <QueryFilms queryFilms={queryFilms} />
-      </Route> */}
+      <QueryFilms query={query} />
     </div>
   );
 }
