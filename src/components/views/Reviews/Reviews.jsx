@@ -34,12 +34,12 @@ export default function Reviews({ id }) {
     <div className={s.infoBox}>
       {status === 'pending' && (
         <span>
-          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+          <Loader type="Rings" color="#00BFFF" height={80} width={80} />
         </span>
       )}
       {status === 'not result' && <span>not results</span>}
       {status === 'result' && (
-        <ul>
+        <ul className={s.list}>
           {filmReviews.map(results => (
             <li className={s.items} key={results.id}>
               <p className={s.author}>{results.author}</p>

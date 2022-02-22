@@ -13,12 +13,10 @@
 }
 
 .activeLink {
-  /* composes: link; */
   color: brown;
 }
 
 .nav {
-  /* max-width: 1000px; */
   display: block;
   background: darkkhaki;
   border: 1px solid brown;

@@ -39,15 +39,17 @@ export default function QueryFilms() {
             }}
             className={s.link}
           >
-            <img
-              className={s.img}
-              src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-              alt={film.name}
-            />
-            <h2>
+            <div className={s.box}>
+              <img
+                className={s.img}
+                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                alt={film.name}
+              />
+            </div>
+            <h5>
               {film.name}
               {film.title}
-            </h2>
+            </h5>
           </Link>
         </li>
       ))}

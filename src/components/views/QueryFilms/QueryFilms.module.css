@@ -1,17 +1,30 @@
 .list {
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  padding: 5px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 15px 5px 0px;
 }
 
 .item {
+  display: flex;
+  flex-direction: column;
   list-style: none;
-  margin-right: 15px;
-  margin-bottom: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-basis: calc((100% - 80px) / 4);
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 15px;
+  min-width: 218px;
+  max-width: 219px;
+  border-radius: 5px;
 }
 
 .link {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-right: 5px;
   background: darkgray;
@@ -28,8 +41,13 @@
   transition: all 0.3s linear;
 }
 
+.box {
+  display: block;
+  min-width: 170px;
+}
+
 .img {
   display: block;
-  height: 100px;
+  height: 250px;
   margin: 10px;
 }

@@ -27,13 +27,15 @@ function App() {
       <Appbar />
       <Suspense
         fallback={
-          <Loader
-            type="ThreeDots"
-            color="#00BFFF"
-            height={80}
-            width={80}
-            timeout={3000} //3 secs
-          />
+          <div className={s.loader}>
+            <Loader
+              type="Rings"
+              color="#00BFFF"
+              height={80}
+              width={80}
+              timeout={3000} //3 secs
+            />
+          </div>
         }
       >
         <Switch>

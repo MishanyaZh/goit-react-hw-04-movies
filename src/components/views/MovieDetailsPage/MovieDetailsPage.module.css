@@ -1,15 +1,15 @@
 .container {
   padding-top: 10px;
-  /* max-width: 1000px; */
   background: rgb(181, 227, 235);
   border: 1px solid black;
   border-radius: 5px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 767px) {
   .flex {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 10px;
   }
   .img {
@@ -19,7 +19,7 @@
 
 .flex {
   display: flex;
-  padding: 10px;
+  margin: 5px;
 }
 
 .img {
@@ -61,7 +61,7 @@
 .infoBox {
   margin: 0, 5px, 0, 5px;
   padding: 15px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 1px 1px 13px 0px black;
+  /* border: 1px solid black; */
+  /* border-radius: 5px; */
+  /* box-shadow: 1px 1px 13px 0px black; */
 }

@@ -33,7 +33,7 @@ export default function Cast({ id }) {
     <div className={s.infoBox}>
       {status === 'pending' && (
         <span>
-          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+          <Loader type="Rings" color="#00BFFF" height={80} width={80} />
         </span>
       )}
       {status === 'not result' && <span>not results</span>}
@@ -46,7 +46,7 @@ export default function Cast({ id }) {
                 src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                 alt={cast.name}
               />
-              <span className={s.name}>{cast.name}</span>
+              <h5 className={s.name}>{cast.name}</h5>
             </li>
           ))}
         </ul>

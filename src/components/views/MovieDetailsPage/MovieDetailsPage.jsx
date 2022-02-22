@@ -52,7 +52,7 @@ export default function MovieDetailsPage() {
 
       {status === 'pending' && (
         <span>
-          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+          <Loader type="Rings" color="#00BFFF" height={80} width={80} />
         </span>
       )}
 
@@ -64,12 +64,7 @@ export default function MovieDetailsPage() {
               film.poster_path ? (
                 `https://image.tmdb.org/t/p/w500${film.poster_path}`
               ) : (
-                <Loader
-                  type="ThreeDots"
-                  color="#00BFFF"
-                  height={80}
-                  width={80}
-                />
+                <Loader type="Rings" color="#00BFFF" height={80} width={80} />
               )
             }
             alt={film.name}
